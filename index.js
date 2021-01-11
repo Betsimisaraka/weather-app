@@ -1,4 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './components/App';
+import {WeatherAppContext} from './components/WeatherAppContext';
 
-ReactDOM.render(<h1>Weather app</h1>, document.getElementById('root'));
+ReactDOM.render(
+    <WeatherAppContext>
+        <App />
+    </WeatherAppContext>,
+    document.getElementById('root')
+);
