@@ -4,22 +4,29 @@ const GlobalContext = createContext();
 
 function WeatherAppContext({children}) {
     const [state, dispatch] = useReducer((state, action) => {
-        switch (action) {
+        switch(action.type) {
             case "Fetch_weather": {
                 return {
                     ...state,
                     isLoading: false,
-                    weather: action.weather
+                    weather: action.data
                 }
             }
-        
+            case "Fetch_location": {
+                return {
+                    ...state,
+                    isLoading: false,
+                    weather: action.country
+                }
+            }
             default:
                 break;
         }
         return state;
     }, {
         isLoading: true,
-        weather: [],
+        weather: {},
+        woeid: 44418,
         location: 'London',
     })
     return (

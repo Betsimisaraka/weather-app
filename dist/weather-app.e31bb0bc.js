@@ -29772,25 +29772,7 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"components/App.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function App() {
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Weather App"));
-}
-
-var _default = App;
-exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"components/WeatherAppContext.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"components/WeatherAppContext.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29805,38 +29787,28 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-var GlobalContext = (0, _react.createContext)();
+const GlobalContext = (0, _react.createContext)();
 exports.GlobalContext = GlobalContext;
 
-function WeatherAppContext(_ref) {
-  var children = _ref.children;
-
-  var _useReducer = (0, _react.useReducer)(function (state, action) {
-    switch (action) {
+function WeatherAppContext({
+  children
+}) {
+  const [state, dispatch] = (0, _react.useReducer)((state, action) => {
+    switch (action.type) {
       case "Fetch_weather":
         {
-          return _objectSpread(_objectSpread({}, state), {}, {
+          return { ...state,
             isLoading: false,
-            weather: action.weather
-          });
+            weather: action.data
+          };
+        }
+
+      case "Fetch_location":
+        {
+          return { ...state,
+            isLoading: false,
+            weather: action.country
+          };
         }
 
       default:
@@ -29846,21 +29818,113 @@ function WeatherAppContext(_ref) {
     return state;
   }, {
     isLoading: true,
-    weather: [],
+    weather: {},
+    woeid: 44418,
     location: 'London'
-  }),
-      _useReducer2 = _slicedToArray(_useReducer, 2),
-      state = _useReducer2[0],
-      dispatch = _useReducer2[1];
-
+  });
   return /*#__PURE__*/_react.default.createElement(GlobalContext.Provider, {
     value: {
-      state: state,
-      dispatch: dispatch
+      state,
+      dispatch
     }
   }, children);
 }
-},{"react":"node_modules/react/index.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"components/Weather.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _WeatherAppContext = require("./WeatherAppContext");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function Weather() {
+  const {
+    state,
+    dispatch
+  } = (0, _react.useContext)(_WeatherAppContext.GlobalContext);
+  const {
+    isLoading,
+    weather,
+    location,
+    woeid
+  } = state;
+  const CORS_API = "https://cors-anywhere.herokuapp.com/";
+  const URL_API = `https://www.metaweather.com/api/location/search/?query=${location}`;
+  const LOCATION = `https://www.metaweather.com/api/location/${woeid}/`; // useEffect(() => {
+  //         async function fetchWeather() {
+  //             const res = await fetch(CORS_API + URL_API);
+  //             console.log(res);
+  //             const data = await res.json();
+  //             console.log(data);
+  //             dispatch({ type: "Fetch_weather", data: data[0]});
+  //         }
+  //         fetchWeather();
+  // }, []);
+
+  (0, _react.useEffect)(() => {
+    async function fetchLocation() {
+      const res = await fetch(CORS_API + LOCATION);
+      console.log(res);
+      const data = await res.json();
+      console.log(data);
+      dispatch({
+        type: "Fetch_location",
+        country: data
+      });
+    }
+
+    fetchLocation();
+  }, []);
+  console.log(weather.consolidated_weather);
+  const weatherToday = !isLoading && weather && weather.consolidated_weather[0];
+  const weatherTomorrow = !isLoading && weather && weather.consolidated_weather[1];
+  const weather2 = !isLoading && weather && weather.consolidated_weather[2];
+  const weather3 = !isLoading && weather && weather.consolidated_weather[3];
+  const weather4 = !isLoading && weather && weather.consolidated_weather[4];
+  const weather5 = !isLoading && weather && weather.consolidated_weather[5];
+  const weatherDuring5days = [weatherTomorrow, weather2, weather3, weather4, weather5];
+  console.log(weatherDuring5days);
+  const date = new Date(!isLoading && weather && weather.time);
+  const getMonth = date.toLocaleString('en-US', {
+    day: 'numeric',
+    weekday: 'short',
+    month: 'short'
+  });
+  console.log(getMonth);
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Weather in the world"), isLoading && 'Loading...', !isLoading && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, weatherToday.weather_state_name), /*#__PURE__*/_react.default.createElement("p", null, "Today: ", getMonth), /*#__PURE__*/_react.default.createElement("h2", null, weather.title), weatherDuring5days.map(days => /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, days.applicable_date), /*#__PURE__*/_react.default.createElement("p", null, days.weather_state_name), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, days.max_temp), /*#__PURE__*/_react.default.createElement("p", null, days.min_temp))))));
+}
+
+var _default = Weather;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","./WeatherAppContext":"components/WeatherAppContext.js"}],"components/App.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _Weather = _interopRequireDefault(require("../components/Weather"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function App() {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Weather.default, null));
+}
+
+var _default = App;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../components/Weather":"components/Weather.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
