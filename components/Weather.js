@@ -46,27 +46,48 @@ function Weather() {
 
     const date = new Date(!isLoading && weather && weather.time)
     const getMonth = date.toLocaleString('en-US', { day: 'numeric', weekday: 'short', month: 'short' });
-    console.log(getMonth);
 
     return (
-        <div>
-            <h1>Weather in the world</h1>
+        <div className="weather_container">
             {isLoading && 'Loading...'}
             {!isLoading && 
                 <div>
-                    <p>{weatherToday.weather_state_name}</p>
-                    <p>Today: {getMonth}</p>
-                    <h2>{weather.title}</h2>
-                    {weatherDuring5days.map(days => (
-                        <div>
-                            <p>{days.applicable_date}</p> 
-                            <p>{days.weather_state_name}</p>
-                            <div>     
-                                <p>{days.max_temp}</p>  
-                                <p>{days.min_temp}</p>                         
-                            </div>
-                        </div>
-                    ))}
+                    <div>     
+                        <p>{weatherToday.weather_state_name}</p>
+                        <p>Today: {getMonth}</p>
+                        <h2>{weather.title}</h2>
+                    </div>
+                    <ul className="weather_fivedays">    
+                        {weatherDuring5days.map(days => (
+                            <li key={days.id}>
+                                <p>{days.applicable_date}</p> 
+                                <p>{days.weather_state_name}</p>
+                                <div>     
+                                    <p>{days.max_temp}</p>  
+                                    <p>{days.min_temp}</p>                         
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                    <h3>Today’s Hightlights</h3>
+                    <ul className="weather_today">
+                        <li>
+                            <p>Wind status</p>
+                            <h3>{weatherToday.wind_speed}</h3>
+                        </li>
+                        <li>
+                            <p>Humidity</p>
+                            <h3>{weatherToday.humidity}</h3>
+                        </li>
+                        <li>
+                            <p>Visibility</p>
+                            <h3>{weatherToday.visibility}</h3>
+                        </li>
+                        <li>
+                            <p>Air pressure</p>
+                            <h3>{weatherToday.air_pressure}</h3>
+                        </li>
+                    </ul>
                 </div> 
             }
         </div>
