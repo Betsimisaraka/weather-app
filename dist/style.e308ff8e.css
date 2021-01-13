@@ -9,12 +9,22 @@ body {
 
 ul {
     list-style: none;
-    /* margin: 0;
-    padding: 0; */
+    margin: 0;
+    padding: 0;
 }
 
 ul li {
     background: #1E213A;
+}
+
+button {
+    cursor: pointer;
+}
+
+.weather {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .weather_fivedays {
@@ -24,11 +34,41 @@ ul li {
     align-items: center;
 }
 
+.weather_fivedays li {
+    padding: 18px 22px;
+}
+.weather_fivedays li + li {
+    margin-left: 23px;
+}
+
 .weather_today {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     row-gap: 48px;
     column-gap: 48px;
+    text-align: center;
+}
+
+.modal_outer {
+	display: grid;
+	align-items: start;
+	justify-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: hsla(0, 0%, 0%, 0.5);
+}
+
+.modal_inner {
+	padding: 1rem 1rem;
+	background-color: #1E213A;
+    height: 100vh;
+}
+
+.weather_temp {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 /*# sourceMappingURL=/style.e308ff8e.css.map */
