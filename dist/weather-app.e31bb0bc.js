@@ -29794,7 +29794,7 @@ function ContextProvider({
   children
 }) {
   const [location, setLocation] = (0, _react.useState)('london');
-  const [woeid, setWoeid] = (0, _react.useState)([]);
+  const [woeid, setWoeid] = (0, _react.useState)({});
   const [weather, setWeather] = (0, _react.useState)([]);
   const [isLoading, setIsLoading] = (0, _react.useState)(true);
 

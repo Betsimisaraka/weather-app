@@ -4,7 +4,7 @@ const Context = createContext();
 
 function ContextProvider({children}) {
     const [location, setLocation] = useState('london');
-    const [woeid, setWoeid] = useState([]);
+    const [woeid, setWoeid] = useState({});
     const [weather, setWeather] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
