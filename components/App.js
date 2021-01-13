@@ -1,21 +1,23 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Context } from '../Context';
 import DisplayWeather from '../components/DisplayWeather';
+import SearchForm from "../components/SearchForm";
 
 function App() {
-    const { isLoading, location, woeid, weather, setLocation, handleSubmit } = useContext(Context);
-    console.log(woeid);
-    console.log(weather);
-
-    console.log(woeid.consolidated_weather);
+    const { isLoading, location, woeid, weather, setLocation, handleSubmit, openModal, setOpenModal } = useContext(Context);
     
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-              <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} placeholder="London" />
-              <button>Search</button>
-           </form> 
-            <DisplayWeather isLoading={isLoading} woeid={woeid} weather={weather} />
+            {openModal && <SearchForm 
+                setOpenModal={setOpenModal}
+                location={location}
+                setLocation={setLocation}
+                handleSubmit={handleSubmit}
+            />}
+            <DisplayWeather isLoading={isLoading} woeid={woeid} weather={weather} 
+                setOpenModal={setOpenModal}
+                openModal={openModal}
+            />
         </div>
     )
 }

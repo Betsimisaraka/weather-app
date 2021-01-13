@@ -1,4 +1,4 @@
-import React, { Children, createContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 const Context = createContext();
 
@@ -7,6 +7,7 @@ function ContextProvider({children}) {
     const [woeid, setWoeid] = useState({});
     const [weather, setWeather] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [openModal, setOpenModal] = useState(false);
 
     async function fetchData() {
         setIsLoading(false);
@@ -30,10 +31,12 @@ function ContextProvider({children}) {
     function handleSubmit(e) {
         e.preventDefault();
         fetchData();
+        setOpenModal(false)
+        setLocation('london');
     }
 
     return (
-        <Context.Provider value={{ isLoading, location, woeid, weather, setWoeid, setLocation, handleSubmit }}>
+        <Context.Provider value={{ isLoading, location, woeid, weather, setWoeid, setLocation, handleSubmit, openModal, setOpenModal }}>
             {children}
         </Context.Provider>
     )

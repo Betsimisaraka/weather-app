@@ -18,9 +18,13 @@
   "homepage": "https://github.com/Betsimisaraka/weather-app#readme",
   "dependencies": {
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "style.css": "^1.0.0"
   },
   "browserslist": [
     "last 1 Chrome versions"
-  ]
+  ],
+  "devDependencies": {
+    "sass": "^1.32.4"
+  }
 }

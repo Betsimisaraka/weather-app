@@ -1,46 +1,46 @@
-import React from 'react'
+import React from 'react';
 
-function DisplayWeather({ woeid, isLoading }) {
-
-    console.log(woeid.consolidated_weather);
-
+function DisplayWeather({ woeid, isLoading, openModal, setOpenModal }) {
     const weatherToday = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[0];
-    console.log(weatherToday);
-    console.log(weatherToday && weatherToday.weather_state_name);
 
     const weatherTommorow = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[1];
     const weather1 = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[2];
     const weather2 = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[3];
     const weather3 = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[4];
     const weather4 = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[5];
-
     const weatherDuringFiveDays = [weatherTommorow, weather1, weather2, weather3, weather4]
-    console.log(weatherDuringFiveDays);
 
     const date = new Date(weatherToday && weatherToday.applicable_date)
     const getMonth = date.toLocaleString('en-US', { day: 'numeric', weekday: 'short', month: 'short' });
+
+    const img = weatherToday && weatherToday.weather_state_abbr;
+    console.log(img);
     
     return (
         <div>
             {isLoading && 'Loading...'}
             {!isLoading && 
                 <div className="weather">
-                    <div> 
-                        <img src={`https://www.metaweather.com/api/static/img/weather/png/64/${weatherToday && weatherToday.weather_state_abbr}.png`} alt="" />
+                    <div className="weather_general"> 
+                        <div className="search_buttons">  
+                            <button className="btn_openmodal" type="button" onClick={() => setOpenModal(!openModal)}>Search for places</button>
+                            <button className="btn_back" type="button">O</button>
+                        </div>
+                        <img src={`https://www.metaweather.com//static/img/weather/png/${img}.png`} alt="Heavy rain" />
                         <p>{weatherToday && weatherToday.the_temp}</p>    
                         <p>{weatherToday && weatherToday.weather_state_name}</p>
                         <p>Today: {getMonth}</p>
                         <h1>{woeid.title}</h1>
                     </div>
-                    <div>    
+                    <div className="weather_sixdays">    
                         <ul className="weather_fivedays">    
                             {weatherDuringFiveDays.map(days => (
                                 <li key={days && days.id}>
                                     <p>{days && days.applicable_date}</p> 
-                                    <p>{days && days.weather_state_name}</p>
+                                    <img src={`https://www.metaweather.com//static/img/weather/ico/${days && days.weather_state_abbr}.ico`} alt={days && days.weather_state_name} />
                                     <div className="weather_temp">     
-                                        <p>{Math.floor(days && days.max_temp)}</p>  
-                                        <p>{Math.floor(days && days.min_temp)}</p>                         
+                                        <p>{Math.floor(days && days.max_temp)} C</p>  
+                                        <p>{Math.floor(days && days.min_temp)} C</p>                         
                                     </div>
                                 </li>
                             ))}
@@ -49,19 +49,19 @@ function DisplayWeather({ woeid, isLoading }) {
                         <ul className="weather_today">
                             <li>
                                 <p>Wind status</p>
-                                <h3>{Math.floor(weatherToday && weatherToday.wind_speed)}</h3>
+                                <h3>{Math.floor(weatherToday && weatherToday.wind_speed)} mph</h3>
                             </li>
                             <li>
                                 <p>Humidity</p>
-                                <h3>{Math.floor(weatherToday && weatherToday.humidity)}</h3>
+                                <h3>{Math.floor(weatherToday && weatherToday.humidity)} %</h3>
                             </li>
                             <li>
                                 <p>Visibility</p>
-                                <h3>{Math.floor(weatherToday && weatherToday.visibility)}</h3>
+                                <h3>{Math.floor(weatherToday && weatherToday.visibility)} miles</h3>
                             </li>
                             <li>
                                 <p>Air pressure</p>
-                                <h3>{Math.floor(weatherToday && weatherToday.air_pressure)}</h3>
+                                <h3>{Math.floor(weatherToday && weatherToday.air_pressure)} mb</h3>
                             </li>
                         </ul>
                     </div>
