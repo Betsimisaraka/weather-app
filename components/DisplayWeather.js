@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from '../Context';
 
-function DisplayWeather({ woeid, isLoading, openModal, setOpenModal }) {
+function DisplayWeather({ openModal, setOpenModal, backToTheLocation }) {
+    const { state } = useContext(Context);
+    const { woeid, isLoading } = state;
     const weatherToday = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[0];
 
     const weatherTommorow = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[1];
@@ -24,10 +27,10 @@ function DisplayWeather({ woeid, isLoading, openModal, setOpenModal }) {
                     <div className="weather_general"> 
                         <div className="search_buttons">  
                             <button className="btn_openmodal" type="button" onClick={() => setOpenModal(!openModal)}>Search for places</button>
-                            <button className="btn_back" type="button">O</button>
+                            <button className="btn_back" onClick={backToTheLocation} type="button">O</button>
                         </div>
                         <img src={`https://www.metaweather.com//static/img/weather/png/${img}.png`} alt="Heavy rain" />
-                        <p>{weatherToday && weatherToday.the_temp}</p>    
+                        <p>{Math.floor(weatherToday && weatherToday.the_temp)}</p>    
                         <p>{weatherToday && weatherToday.weather_state_name}</p>
                         <p>Today: {getMonth}</p>
                         <h1>{woeid.title}</h1>

@@ -29794,24 +29794,53 @@ function ContextProvider({
   children
 }) {
   const [location, setLocation] = (0, _react.useState)('london');
-  const [woeid, setWoeid] = (0, _react.useState)({});
-  const [weather, setWeather] = (0, _react.useState)([]);
-  const [isLoading, setIsLoading] = (0, _react.useState)(true);
   const [openModal, setOpenModal] = (0, _react.useState)(false);
+  const [state, dispatch] = (0, _react.useReducer)((state, action) => {
+    switch (action.type) {
+      case "FETCH_WEATHER":
+        {
+          return { ...state,
+            isLoading: false,
+            weather: action.weather
+          };
+        }
+
+      case "FETCH_WOEID":
+        {
+          return { ...state,
+            isLoading: false,
+            woeid: action.woeid
+          };
+        }
+
+      default:
+        break;
+    }
+
+    return state;
+  }, {
+    isLoading: true,
+    weather: [],
+    woeid: {}
+  });
 
   async function fetchData() {
-    setIsLoading(false);
     const URL_API = `https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?query=${location}`;
     const response = await fetch(URL_API);
     const result = await response.json();
-    setWeather(result);
+    dispatch({
+      type: "FETCH_WEATHER",
+      weather: result
+    });
 
     if (result.length) {
-      setIsLoading(false);
       const URL_WOEID = `https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${result[0].woeid}/`;
       const res = await fetch(URL_WOEID);
       const data = await res.json();
-      setWoeid(data);
+      dispatch({
+        type: "FETCH_WOEID",
+        woeid: data
+      });
     }
   }
 
@@ -29826,17 +29855,20 @@ function ContextProvider({
     setLocation('london');
   }
 
+  function backToTheLocation() {
+    fetchData();
+    setLocation('london');
+  }
+
   return /*#__PURE__*/_react.default.createElement(Context.Provider, {
     value: {
-      isLoading,
       location,
-      woeid,
-      weather,
-      setWoeid,
+      state,
       setLocation,
       handleSubmit,
       openModal,
-      setOpenModal
+      setOpenModal,
+      backToTheLocation
     }
   }, children);
 }
@@ -29848,16 +29880,26 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _Context = require("../Context");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function DisplayWeather({
-  woeid,
-  isLoading,
   openModal,
-  setOpenModal
+  setOpenModal,
+  backToTheLocation
 }) {
+  const {
+    state
+  } = (0, _react.useContext)(_Context.Context);
+  const {
+    woeid,
+    isLoading
+  } = state;
   const weatherToday = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[0];
   const weatherTommorow = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[1];
   const weather1 = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[2];
@@ -29885,11 +29927,12 @@ function DisplayWeather({
     onClick: () => setOpenModal(!openModal)
   }, "Search for places"), /*#__PURE__*/_react.default.createElement("button", {
     className: "btn_back",
+    onClick: backToTheLocation,
     type: "button"
   }, "O")), /*#__PURE__*/_react.default.createElement("img", {
     src: `https://www.metaweather.com//static/img/weather/png/${img}.png`,
     alt: "Heavy rain"
-  }), /*#__PURE__*/_react.default.createElement("p", null, weatherToday && weatherToday.the_temp), /*#__PURE__*/_react.default.createElement("p", null, weatherToday && weatherToday.weather_state_name), /*#__PURE__*/_react.default.createElement("p", null, "Today: ", getMonth), /*#__PURE__*/_react.default.createElement("h1", null, woeid.title)), /*#__PURE__*/_react.default.createElement("div", {
+  }), /*#__PURE__*/_react.default.createElement("p", null, Math.floor(weatherToday && weatherToday.the_temp)), /*#__PURE__*/_react.default.createElement("p", null, weatherToday && weatherToday.weather_state_name), /*#__PURE__*/_react.default.createElement("p", null, "Today: ", getMonth), /*#__PURE__*/_react.default.createElement("h1", null, woeid.title)), /*#__PURE__*/_react.default.createElement("div", {
     className: "weather_sixdays"
   }, /*#__PURE__*/_react.default.createElement("ul", {
     className: "weather_fivedays"
@@ -29907,7 +29950,7 @@ function DisplayWeather({
 
 var _default = DisplayWeather;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"components/SearchForm.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../Context":"Context.js"}],"components/SearchForm.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29992,14 +30035,12 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function App() {
   const {
-    isLoading,
     location,
-    woeid,
-    weather,
     setLocation,
     handleSubmit,
     openModal,
-    setOpenModal
+    setOpenModal,
+    backToTheLocation
   } = (0, _react.useContext)(_Context.Context);
   return /*#__PURE__*/_react.default.createElement("div", null, openModal && /*#__PURE__*/_react.default.createElement(_SearchForm.default, {
     setOpenModal: setOpenModal,
@@ -30007,11 +30048,9 @@ function App() {
     setLocation: setLocation,
     handleSubmit: handleSubmit
   }), /*#__PURE__*/_react.default.createElement(_DisplayWeather.default, {
-    isLoading: isLoading,
-    woeid: woeid,
-    weather: weather,
     setOpenModal: setOpenModal,
-    openModal: openModal
+    openModal: openModal,
+    backToTheLocation: backToTheLocation
   }));
 }
 
@@ -30059,7 +30098,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61493" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63346" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

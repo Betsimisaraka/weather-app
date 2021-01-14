@@ -4,7 +4,7 @@ import DisplayWeather from '../components/DisplayWeather';
 import SearchForm from "../components/SearchForm";
 
 function App() {
-    const { isLoading, location, woeid, weather, setLocation, handleSubmit, openModal, setOpenModal } = useContext(Context);
+    const { location, setLocation, handleSubmit, openModal, setOpenModal, backToTheLocation } = useContext(Context);
     
     return (
         <div>
@@ -14,9 +14,10 @@ function App() {
                 setLocation={setLocation}
                 handleSubmit={handleSubmit}
             />}
-            <DisplayWeather isLoading={isLoading} woeid={woeid} weather={weather} 
+            <DisplayWeather
                 setOpenModal={setOpenModal}
                 openModal={openModal}
+                backToTheLocation={backToTheLocation}
             />
         </div>
     )
