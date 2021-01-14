@@ -5,12 +5,6 @@
     align-items: center;
 }
 
-.weather_sixdays {
-    margin-top: 100px;
-    margin-bottom: 100px;
-    margin-right: 100px;
-}
-
 .modal_inner form {
     display: flex;
     flex-direction: row;
@@ -50,8 +44,10 @@
 }   
 
 .weather {
-    display: grid;
-    grid-template-columns: 400px 1fr;
+    margin-left: 400px;
+    padding-top: 42px;
+    margin-bottom: 100px;
+    margin-right: 100px;
 }
 
 .weather_fivedays {
@@ -79,7 +75,8 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	background-color: hsla(0, 0%, 0%, 0.5);
+    background-color: hsla(0, 0%, 0%, 0.5);
+    z-index: 1;
 }
 
 .modal_inner {

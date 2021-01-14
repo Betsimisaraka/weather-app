@@ -9,6 +9,11 @@ body {
     padding: 0;
 }
 
+p, h3 , h2, h1, span {
+    margin: 0;
+    padding: 0;
+}
+
 h1 {
     
     font-family: 'Raleway';
@@ -42,6 +47,13 @@ h3 {
     line-height: 19px;
     text-align: center;
     color: #E7E7EB;
+}
+
+.buttons_C_F button, .btn_back, .wind_direction {
+    border-radius: 54%;
+    border: none;
+    width: 40px;
+    height: 40px;
 }
 
 // span {

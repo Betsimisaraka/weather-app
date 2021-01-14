@@ -29921,7 +29921,9 @@ function DisplayWeather({
   const weatherDuringFiveDays = [weatherTommorow, weather1, weather2, weather3, weather4];
   return /*#__PURE__*/_react.default.createElement("div", null, isLoading && 'Loading...', !isLoading && /*#__PURE__*/_react.default.createElement("div", {
     className: "weather"
-  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "buttons_C_F"
+  }, /*#__PURE__*/_react.default.createElement("button", {
     onClick: changeIntoCelcuis,
     type: "button"
   }, " \u02DAC"), /*#__PURE__*/_react.default.createElement("button", {
@@ -29948,7 +29950,10 @@ function DisplayWeather({
     }, isConverted ? /*#__PURE__*/_react.default.createElement("p", null, Math.floor(days && days.max_temp) * 9 / 5 + 32, " \u02DAF") : /*#__PURE__*/_react.default.createElement("p", null, Math.floor(days && days.max_temp), " \u02DAC"), isConverted ? /*#__PURE__*/_react.default.createElement("p", null, Math.floor(days && days.min_temp) * 9 / 5 + 32, " \u02DAF") : /*#__PURE__*/_react.default.createElement("p", null, Math.floor(days && days.min_temp), " \u02DAC")));
   })), /*#__PURE__*/_react.default.createElement("h3", null, "Today\u2019s Hightlights"), /*#__PURE__*/_react.default.createElement("ul", {
     className: "weather_today"
-  }, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, "Wind status"), /*#__PURE__*/_react.default.createElement("h3", null, Math.floor(weatherToday && weatherToday.wind_speed), " ", /*#__PURE__*/_react.default.createElement("span", null, "mph")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+  }, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, "Wind status"), /*#__PURE__*/_react.default.createElement("h3", null, Math.floor(weatherToday && weatherToday.wind_speed), " ", /*#__PURE__*/_react.default.createElement("span", null, "mph")), /*#__PURE__*/_react.default.createElement("div", {
+    className: "wind"
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    className: "wind_direction",
     type: "button"
   }, "X"), /*#__PURE__*/_react.default.createElement("p", null, "WSW"))), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, "Humidity"), /*#__PURE__*/_react.default.createElement("h3", null, Math.floor(weatherToday && weatherToday.humidity), " ", /*#__PURE__*/_react.default.createElement("span", null, "%")), /*#__PURE__*/_react.default.createElement("div", {
     className: "percentage"
@@ -30051,7 +30056,6 @@ function Sidbar({
     woeid,
     isLoading
   } = state;
-  console.log(woeid);
   const weatherToday = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[0];
   const date = new Date(weatherToday && weatherToday.applicable_date);
   const getMonth = date.toLocaleString('en-US', {
@@ -30060,8 +30064,7 @@ function Sidbar({
     month: 'short'
   });
   const img = weatherToday && weatherToday.weather_state_abbr;
-  console.log(img);
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement("div", {
     className: "weather_general"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "search_buttons"
@@ -30078,13 +30081,13 @@ function Sidbar({
     alt: "Heavy rain"
   }), isConverted ? /*#__PURE__*/_react.default.createElement("p", {
     className: "weather_today_temp"
-  }, Math.floor(weatherToday && weatherToday.the_temp) * 9 / 5 + 32, " \u02DAF") : /*#__PURE__*/_react.default.createElement("p", {
+  }, Math.floor(weatherToday && weatherToday.the_temp) * 9 / 5 + 32, " ", /*#__PURE__*/_react.default.createElement("span", null, "\u02DAF")) : /*#__PURE__*/_react.default.createElement("p", {
     className: "weather_today_temp"
-  }, Math.floor(weatherToday && weatherToday.the_temp), " \u02DAC"), /*#__PURE__*/_react.default.createElement("p", {
+  }, Math.floor(weatherToday && weatherToday.the_temp), " ", /*#__PURE__*/_react.default.createElement("span", null, "\u02DAC")), /*#__PURE__*/_react.default.createElement("p", {
     className: "weather_name"
   }, weatherToday && weatherToday.weather_state_name), /*#__PURE__*/_react.default.createElement("p", {
     className: "weather_date_today"
-  }, "Today: ", getMonth), /*#__PURE__*/_react.default.createElement("h1", null, woeid.title)));
+  }, "Today: ", getMonth), /*#__PURE__*/_react.default.createElement("h1", null, woeid.title));
 }
 
 var _default = Sidbar;

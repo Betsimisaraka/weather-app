@@ -18,7 +18,7 @@ function DisplayWeather({ changeIntoCelcuis, changeIntoF, isConverted }) {
             {isLoading && 'Loading...'}
             {!isLoading && 
                 <div className="weather">
-                    <div>
+                    <div className="buttons_C_F">
                         <button onClick={changeIntoCelcuis} type="button"> ˚C</button>
                         <button onClick={changeIntoF} type="button"> ˚F</button>
                     </div>
@@ -50,8 +50,8 @@ function DisplayWeather({ changeIntoCelcuis, changeIntoF, isConverted }) {
                             <li>
                                 <p>Wind status</p>
                                 <h3>{Math.floor(weatherToday && weatherToday.wind_speed)} <span>mph</span></h3>
-                                <div>
-                                    <button type="button">X</button>
+                                <div className="wind">
+                                    <button className="wind_direction" type="button">X</button>
                                     <p>WSW</p>
                                 </div>
                             </li>

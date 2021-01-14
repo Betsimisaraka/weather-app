@@ -1,9 +1,28 @@
+.weather_general {
+    text-align: center;
+    height: 100vh;
+    background: #1E213A;
+    width: 300px;
+    position: fixed;
+    overflow: auto;
+    padding-bottom: 52px;
+}
+
+.weather_general img {
+    width: 150px;
+    height: 200px;
+    margin-top: 100px;
+}
+
 .weather_today_temp {
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 500;
-    font-size: 144px;
-    line-height: 169px;
+    font-size: 100px;
+    line-height: 100px;
+    margin: 0;
+    margin-top: 50px;
+    padding: 0;
     color: #E7E7EB;
 }
 
@@ -33,5 +52,17 @@ h1 {
     font-size: 18px;
     line-height: 21px;
     color: #88869D;
+}
+
+.weather_today_temp span {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 42px;
+    text-align: center;
+    color: #A09FB1;
+    margin: 0;
+    padding: 0;
 }
 
