@@ -21,13 +21,13 @@ function SearchForm({ setOpenModal, location, setLocation, handleSubmit }) {
         <div className="modal_outer"> 
             <div className="modal_inner">
                 <button className="btn_close_modal" type="button" onClick={closeModal}>X</button>  
-                <form onSubmit={handleToggle}>
+                <form>
                     <input 
                         type="text" 
                         value={location} 
                         onChange={e => setLocation(e.target.value)}
                         placeholder="Search location" />
-                    <button>Search</button>
+                    <button type="button" onClick={handleToggle}>Search</button>
                 </form>
                 {isShow && <button className="btn_fetch" type="button" onClick={handleSubmit} value={location}>{location}</button>}
             </div>    

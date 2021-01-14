@@ -5,6 +5,7 @@ const Context = createContext();
 function ContextProvider({children}) {
     const [location, setLocation] = useState('london');
     const [openModal, setOpenModal] = useState(false);
+    const [isConverted, setIsConverted ] = useState(false);
 
     const [state, dispatch] = useReducer((state, action) => {
         switch (action.type) {
@@ -62,8 +63,16 @@ function ContextProvider({children}) {
         setLocation('london');
     }
 
+    function changeIntoCelcuis() {
+        setIsConverted(false);
+    }
+
+    function changeIntoF() {
+        setIsConverted(true);
+    }
+
     return (
-        <Context.Provider value={{ location, state, setLocation, handleSubmit, openModal, setOpenModal, backToTheLocation }}>
+        <Context.Provider value={{ location, state, setLocation, handleSubmit, openModal, setOpenModal, backToTheLocation, isConverted, changeIntoF, changeIntoCelcuis }}>
             {children}
         </Context.Provider>
     )

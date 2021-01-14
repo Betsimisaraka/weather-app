@@ -1,0 +1,12 @@
+.percentage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+progress {
+    width: 82%;
+}
