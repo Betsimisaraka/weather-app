@@ -3,7 +3,8 @@ import { Context } from '../Context';
 
 function DisplayWeather({ changeIntoCelcuis, changeIntoF, isConverted }) {
     const { state } = useContext(Context);
-    const { woeid, isLoading } = state;
+    const { woeid, isLoading, weather } = state;
+
     const weatherToday = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[0];
 
     const weatherTommorow = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[1];
@@ -15,7 +16,9 @@ function DisplayWeather({ changeIntoCelcuis, changeIntoF, isConverted }) {
     
     return (
         <div>
-            {isLoading && 'Loading...'}
+            <div className="loading2">
+                {isLoading && <p>Loading...</p>}
+            </div>
             {!isLoading && 
                 <div className="weather">
                     <div className="buttons_C_F">
@@ -24,11 +27,11 @@ function DisplayWeather({ changeIntoCelcuis, changeIntoF, isConverted }) {
                     </div>
                     <div className="weather_sixdays">    
                         <ul className="weather_fivedays">    
-                            {weatherDuringFiveDays.map(days => {
+                            {weatherDuringFiveDays.map((days, index) => {
                                 const date = new Date(days && days.applicable_date);
                                 const newDate = date.toLocaleString('en-US', { day: 'numeric', weekday: 'short', month: 'short' });
                                 return (
-                                    <li key={days && days.id}>
+                                    <li key={index}>
                                         <p>{newDate}</p> 
                                         <img src={`https://www.metaweather.com//static/img/weather/ico/${days && days.weather_state_abbr}.ico`} alt={days && days.weather_state_name} />
                                         <div className="weather_temp">     

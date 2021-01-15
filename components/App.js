@@ -9,7 +9,7 @@ function App() {
     
     return (
         <div>
-            {openModal && <SearchForm 
+            {openModal && <SearchForm
                 setOpenModal={setOpenModal}
                 location={location}
                 setLocation={setLocation}

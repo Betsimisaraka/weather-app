@@ -29814,6 +29814,13 @@ function ContextProvider({
           };
         }
 
+      case "SEARCH_CITY":
+        {
+          return { ...state,
+            woeid: action.filteredGithubJobs
+          };
+        }
+
       default:
         break;
     }
@@ -29822,7 +29829,7 @@ function ContextProvider({
   }, {
     isLoading: true,
     weather: [],
-    woeid: {}
+    woeid: []
   });
 
   async function fetchData() {
@@ -29910,7 +29917,8 @@ function DisplayWeather({
   } = (0, _react.useContext)(_Context.Context);
   const {
     woeid,
-    isLoading
+    isLoading,
+    weather
   } = state;
   const weatherToday = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[0];
   const weatherTommorow = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[1];
@@ -29919,7 +29927,9 @@ function DisplayWeather({
   const weather3 = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[4];
   const weather4 = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[5];
   const weatherDuringFiveDays = [weatherTommorow, weather1, weather2, weather3, weather4];
-  return /*#__PURE__*/_react.default.createElement("div", null, isLoading && 'Loading...', !isLoading && /*#__PURE__*/_react.default.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
+    className: "loading2"
+  }, isLoading && /*#__PURE__*/_react.default.createElement("p", null, "Loading...")), !isLoading && /*#__PURE__*/_react.default.createElement("div", {
     className: "weather"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "buttons_C_F"
@@ -29933,7 +29943,7 @@ function DisplayWeather({
     className: "weather_sixdays"
   }, /*#__PURE__*/_react.default.createElement("ul", {
     className: "weather_fivedays"
-  }, weatherDuringFiveDays.map(days => {
+  }, weatherDuringFiveDays.map((days, index) => {
     const date = new Date(days && days.applicable_date);
     const newDate = date.toLocaleString('en-US', {
       day: 'numeric',
@@ -29941,7 +29951,7 @@ function DisplayWeather({
       month: 'short'
     });
     return /*#__PURE__*/_react.default.createElement("li", {
-      key: days && days.id
+      key: index
     }, /*#__PURE__*/_react.default.createElement("p", null, newDate), /*#__PURE__*/_react.default.createElement("img", {
       src: `https://www.metaweather.com//static/img/weather/ico/${days && days.weather_state_abbr}.ico`,
       alt: days && days.weather_state_name
@@ -29977,6 +29987,8 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _Context = require("../Context");
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -29987,6 +29999,12 @@ function SearchForm({
   setLocation,
   handleSubmit
 }) {
+  const {
+    state
+  } = (0, _react.useContext)(_Context.Context);
+  const {
+    woeid
+  } = state;
   const [isShow, setIsShow] = (0, _react.useState)(false);
 
   function toggled() {
@@ -30011,15 +30029,15 @@ function SearchForm({
     className: "btn_close_modal",
     type: "button",
     onClick: closeModal
-  }, "X"), /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("input", {
+  }, "X"), /*#__PURE__*/_react.default.createElement("form", {
+    onSubmit: handleToggle
+  }, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     value: location,
+    name: "searchCity",
     onChange: e => setLocation(e.target.value),
     placeholder: "Search location"
-  }), /*#__PURE__*/_react.default.createElement("button", {
-    type: "button",
-    onClick: handleToggle
-  }, "Search")), isShow && /*#__PURE__*/_react.default.createElement("button", {
+  }), /*#__PURE__*/_react.default.createElement("button", null, "Search")), isShow && /*#__PURE__*/_react.default.createElement("button", {
     className: "btn_fetch",
     type: "button",
     onClick: handleSubmit,
@@ -30029,7 +30047,7 @@ function SearchForm({
 
 var _default = SearchForm;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"components/Sidbar.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../Context":"Context.js"}],"components/Sidbar.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30078,7 +30096,9 @@ function Sidbar({
     className: "btn_back",
     onClick: backToTheLocation,
     type: "button"
-  }, "O")), /*#__PURE__*/_react.default.createElement("img", {
+  }, "O")), /*#__PURE__*/_react.default.createElement("div", {
+    className: "loading1"
+  }, isLoading && /*#__PURE__*/_react.default.createElement("p", null, "Loading...")), !isLoading && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
     src: `https://www.metaweather.com//static/img/weather/png/${img}.png`,
     alt: "Heavy rain"
   }), isConverted ? /*#__PURE__*/_react.default.createElement("p", {
@@ -30089,7 +30109,7 @@ function Sidbar({
     className: "weather_name"
   }, weatherToday && weatherToday.weather_state_name), /*#__PURE__*/_react.default.createElement("p", {
     className: "weather_date_today"
-  }, "Today: ", getMonth), /*#__PURE__*/_react.default.createElement("h1", null, woeid.title));
+  }, "Today: ", getMonth), /*#__PURE__*/_react.default.createElement("h1", null, woeid.title)));
 }
 
 var _default = Sidbar;

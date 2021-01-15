@@ -53,6 +53,34 @@ h3 {
   height: 40px;
 }
 
+.loading1, .loading2 {
+  position: relative;
+}
+
+.loading1 p, .loading2 p {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+}
+
+.loading1 {
+  height: 100%;
+}
+
+.loading1 p {
+  top: 35%;
+  transform: translate(-50%, -50%);
+}
+
+.loading2 {
+  height: 100vh;
+}
+
+.loading2 p {
+  top: 50%;
+  transform: translate(50%, -50%);
+}
+
 .weather_fivedays {
   display: flex;
   flex-direction: row;
@@ -91,6 +119,8 @@ h3 {
   justify-content: space-between;
   align-items: center;
   padding-top: 42px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .btn_openmodal {

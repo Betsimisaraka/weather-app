@@ -1,6 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react';
+import { Context } from '../Context';
 
 function SearchForm({ setOpenModal, location, setLocation, handleSubmit }) {
+    const { state } = useContext(Context);
+    const { woeid } = state;
+
     const [isShow, setIsShow] = useState(false);
 
     function toggled() {
@@ -21,13 +25,14 @@ function SearchForm({ setOpenModal, location, setLocation, handleSubmit }) {
         <div className="modal_outer"> 
             <div className="modal_inner">
                 <button className="btn_close_modal" type="button" onClick={closeModal}>X</button>  
-                <form>
+                <form onSubmit={handleToggle}>
                     <input 
                         type="text" 
-                        value={location} 
+                        value={location}
+                        name="searchCity"
                         onChange={e => setLocation(e.target.value)}
                         placeholder="Search location" />
-                    <button type="button" onClick={handleToggle}>Search</button>
+                    <button>Search</button>
                 </form>
                 {isShow && <button className="btn_fetch" type="button" onClick={handleSubmit} value={location}>{location}</button>}
             </div>    

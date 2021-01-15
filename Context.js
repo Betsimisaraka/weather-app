@@ -23,6 +23,12 @@ function ContextProvider({children}) {
                     woeid: action.woeid
                 }
             }
+            case "SEARCH_CITY": {
+                return {
+                    ...state,
+                    woeid: action.filteredGithubJobs
+                }
+            }
             
             default:
                 break;
@@ -31,7 +37,7 @@ function ContextProvider({children}) {
     }, {
         isLoading: true,
         weather: [],
-        woeid: {},
+        woeid: [],
     })
 
     async function fetchData() {
