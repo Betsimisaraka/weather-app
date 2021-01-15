@@ -30076,7 +30076,6 @@ function SearchForm({
     key: weath.title,
     className: "btn_fetch",
     type: "button",
-    value: location,
     onClick: handleSubmit
   }, weath.title))));
 }
