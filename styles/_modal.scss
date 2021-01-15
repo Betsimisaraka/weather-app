@@ -1,0 +1,81 @@
+.modal_outer {
+    width: 268px;
+	position: fixed;
+	top: 0;
+	left: 0;
+    background-color: hsla(0, 0%, 0%, 0.5);
+    z-index: 1;
+}
+
+.modal_inner {
+    width: 268px;
+	padding: 1rem 1rem;
+	background-color: #1E213A;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.btn_fetch {
+    border: 1px solid #616475;
+    padding-top: 22px;
+    padding-bottom: 22px;
+    padding-left: 12px;
+    padding-right: 160px;
+    box-sizing: border-box;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #E7E7EB;
+    background-color: #1E213A;
+    margin-top: 58px;
+}
+
+.btn_close_modal {
+    background-color: #1E213A;
+    color: #E7E7EB;
+    margin-bottom: 45px;
+    border: none;
+    align-self: flex-end;
+}
+
+.modal_inner form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal_inner form input {
+    background-color: #1E213A;
+    width: 170px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 1px solid #E7E7EB;
+    box-sizing: border-box;
+}
+
+.modal_inner form input[placeholder] {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #616475;
+}
+
+.modal_inner form button {
+    background: #3C47E9;
+    padding: 15px 19px;
+    font-family: 'Raleway';
+    border: none;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #E7E7EB;
+    margin-left: 12px;
+}   

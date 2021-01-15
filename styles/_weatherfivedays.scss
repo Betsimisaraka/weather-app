@@ -1,0 +1,31 @@
+.weather_fivedays {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-bottom: 50px;
+}
+
+.weather_fivedays li {
+    padding: 18px 22px;
+}
+
+.weather_today {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 48px;
+    column-gap: 48px;
+    text-align: center;
+}
+
+.weather_temp {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.weather_fivedays li img {
+    padding-top: 10px;
+    padding-bottom: 31px;
+}

@@ -29948,7 +29948,9 @@ function DisplayWeather({
     }), /*#__PURE__*/_react.default.createElement("div", {
       className: "weather_temp"
     }, isConverted ? /*#__PURE__*/_react.default.createElement("p", null, Math.floor(days && days.max_temp) * 9 / 5 + 32, " \u02DAF") : /*#__PURE__*/_react.default.createElement("p", null, Math.floor(days && days.max_temp), " \u02DAC"), isConverted ? /*#__PURE__*/_react.default.createElement("p", null, Math.floor(days && days.min_temp) * 9 / 5 + 32, " \u02DAF") : /*#__PURE__*/_react.default.createElement("p", null, Math.floor(days && days.min_temp), " \u02DAC")));
-  })), /*#__PURE__*/_react.default.createElement("h3", null, "Today\u2019s Hightlights"), /*#__PURE__*/_react.default.createElement("ul", {
+  })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", {
+    className: "weather_today__heading"
+  }, "Today\u2019s Hightlights"), /*#__PURE__*/_react.default.createElement("ul", {
     className: "weather_today"
   }, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, "Wind status"), /*#__PURE__*/_react.default.createElement("h3", null, Math.floor(weatherToday && weatherToday.wind_speed), " ", /*#__PURE__*/_react.default.createElement("span", null, "mph")), /*#__PURE__*/_react.default.createElement("div", {
     className: "wind"
@@ -29960,7 +29962,7 @@ function DisplayWeather({
   }, /*#__PURE__*/_react.default.createElement("span", null, "0%"), /*#__PURE__*/_react.default.createElement("span", null, "50%"), /*#__PURE__*/_react.default.createElement("span", null, "100%")), /*#__PURE__*/_react.default.createElement("progress", {
     value: weatherToday && weatherToday.humidity,
     max: "100"
-  })), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, "Visibility"), /*#__PURE__*/_react.default.createElement("h3", null, Math.floor(weatherToday && weatherToday.visibility), " ", /*#__PURE__*/_react.default.createElement("span", null, "miles"))), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, "Air pressure"), /*#__PURE__*/_react.default.createElement("h3", null, Math.floor(weatherToday && weatherToday.air_pressure), " ", /*#__PURE__*/_react.default.createElement("span", null, "mb")))))));
+  })), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, "Visibility"), /*#__PURE__*/_react.default.createElement("h3", null, Math.floor(weatherToday && weatherToday.visibility), " ", /*#__PURE__*/_react.default.createElement("span", null, "miles"))), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, "Air pressure"), /*#__PURE__*/_react.default.createElement("h3", null, Math.floor(weatherToday && weatherToday.air_pressure), " ", /*#__PURE__*/_react.default.createElement("span", null, "mb"))))))));
 }
 
 var _default = DisplayWeather;
@@ -30192,7 +30194,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63346" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54773" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
