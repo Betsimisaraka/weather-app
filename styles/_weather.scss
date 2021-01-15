@@ -1,13 +1,12 @@
 .weather {
-    margin-left: 400px;
-    padding-top: 42px;
-    margin-bottom: 100px;
-    margin-right: 100px;
+    padding-top: 52px;
+    padding-bottom: 51px;
+    padding-right: 40px;
+    padding-left: 40px;
 }
 
 .buttons_C_F {
-    text-align: end;
-    margin-bottom: 50px;
+    display: none;
 }
 
 .buttons_C_F button:first-child {
@@ -16,4 +15,18 @@
 
 .buttons_C_F button:last-child {
     background: #585676;
+}
+
+@media (min-width: 1000px) {
+    .weather {
+        margin-left: 400px;
+        padding-top: 42px;
+        margin-bottom: 100px;
+        margin-right: 100px;
+    } 
+    .buttons_C_F {
+        display: block;
+        text-align: end;
+        margin-bottom: 50px;
+    }  
 }

@@ -16,11 +16,9 @@ function Sidbar({ setOpenModal, backToTheLocation, openModal, isConverted }) {
                 <button className="btn_openmodal" type="button" onClick={() => setOpenModal(!openModal)}>Search for places</button>
                 <button className="btn_back" onClick={backToTheLocation} type="button">O</button>
             </div>
-            <div className="loading1">
-                {isLoading && <p>Loading...</p>}
-            </div>
-                {!isLoading &&
-                <div>
+                {isLoading 
+                ? <p className="loading">Loading...</p>
+                : <div>
                     <img src={`https://www.metaweather.com//static/img/weather/png/${img}.png`} alt="Heavy rain" />
                     {isConverted 
                         ? <p className="weather_today_temp">{(Math.floor(weatherToday && weatherToday.the_temp) * 9/5 + 32)} <span>˚F</span></p> 

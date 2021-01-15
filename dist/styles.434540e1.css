@@ -53,32 +53,8 @@ h3 {
   height: 40px;
 }
 
-.loading1, .loading2 {
-  position: relative;
-}
-
-.loading1 p, .loading2 p {
-  margin: 0;
-  position: absolute;
-  left: 50%;
-}
-
-.loading1 {
-  height: 100%;
-}
-
-.loading1 p {
-  top: 35%;
-  transform: translate(-50%, -50%);
-}
-
-.loading2 {
-  height: 100vh;
-}
-
-.loading2 p {
-  top: 50%;
-  transform: translate(50%, -50%);
+.loading {
+  text-align: center;
 }
 
 .weather_fivedays {
@@ -143,11 +119,8 @@ h3 {
 
 .weather_general {
   text-align: center;
-  height: 100vh;
   background: #1E213A;
-  width: 300px;
-  position: fixed;
-  overflow: auto;
+  width: 100%;
   padding-bottom: 52px;
 }
 
@@ -213,16 +186,26 @@ h1 {
   padding: 0;
 }
 
+@media (min-width: 1000px) {
+  .weather_general {
+    text-align: center;
+    height: 100vh;
+    background: #1E213A;
+    width: 300px;
+    position: fixed;
+    overflow: auto;
+    padding-bottom: 52px;
+  }
+}
 .weather {
-  margin-left: 400px;
-  padding-top: 42px;
-  margin-bottom: 100px;
-  margin-right: 100px;
+  padding-top: 52px;
+  padding-bottom: 51px;
+  padding-right: 40px;
+  padding-left: 40px;
 }
 
 .buttons_C_F {
-  text-align: end;
-  margin-bottom: 50px;
+  display: none;
 }
 
 .buttons_C_F button:first-child {
@@ -233,6 +216,20 @@ h1 {
   background: #585676;
 }
 
+@media (min-width: 1000px) {
+  .weather {
+    margin-left: 400px;
+    padding-top: 42px;
+    margin-bottom: 100px;
+    margin-right: 100px;
+  }
+
+  .buttons_C_F {
+    display: block;
+    text-align: end;
+    margin-bottom: 50px;
+  }
+}
 .weather_today__heading {
   font-family: "Raleway";
   font-style: normal;
@@ -303,8 +300,10 @@ progress {
 }
 
 .modal_outer {
-  width: 268px;
+  width: 300px;
   position: fixed;
+  overflow: auto;
+  height: 100vh;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);

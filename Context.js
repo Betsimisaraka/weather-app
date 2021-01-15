@@ -54,7 +54,9 @@ function ContextProvider({children}) {
     }
 
     useEffect(() => {
-        fetchData();
+        setTimeout(() => {
+            fetchData();
+        }, 1000);
     }, [])
 
     function handleSubmit(e) {
