@@ -35,9 +35,10 @@ function SearchForm({ setOpenModal, location, setLocation, handleSubmit }) {
                         placeholder="Search location" />
                     <button>Search</button>
                 </form>
-                {isShow && (weather.length > 0 && weather.map(weath =>
+                {isShow && (<button className="btn_fetch" type="button" value={location} onClick={handleSubmit}>{location}</button>)}
+                {/* {isShow && (weather.length > 0 && weather.map(weath =>
                     <button key={weath.title} className="btn_fetch" type="button" onClick={handleSubmit}>{weath.title}</button>))
-                }
+                } */}
             </div>    
         </div>
     )

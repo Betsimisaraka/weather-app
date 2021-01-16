@@ -30072,12 +30072,12 @@ function SearchForm({
     name: "searchCity",
     onChange: e => setLocation(e.target.value),
     placeholder: "Search location"
-  }), /*#__PURE__*/_react.default.createElement("button", null, "Search")), isShow && weather.length > 0 && weather.map(weath => /*#__PURE__*/_react.default.createElement("button", {
-    key: weath.title,
+  }), /*#__PURE__*/_react.default.createElement("button", null, "Search")), isShow && /*#__PURE__*/_react.default.createElement("button", {
     className: "btn_fetch",
     type: "button",
+    value: location,
     onClick: handleSubmit
-  }, weath.title))));
+  }, location)));
 }
 
 var _default = SearchForm;
@@ -30249,7 +30249,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61065" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50472" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
