@@ -33,12 +33,12 @@ function DisplayWeather({ changeIntoCelcuis, changeIntoF, isConverted }) {
                                         <img src={`https://www.metaweather.com//static/img/weather/ico/${days && days.weather_state_abbr}.ico`} alt={days && days.weather_state_name} />
                                         <div className="weather_temp">     
                                             {isConverted 
-                                                ?  <p>{(Math.floor(days && days.max_temp) * 9/5 + 32)} ˚F</p> 
-                                                : <p>{(Math.floor(days && days.max_temp))} ˚C</p> 
+                                                ?  <p className="max_temp">{(Math.floor(days && days.max_temp) * 9/5 + 32)} ˚F</p> 
+                                                : <p className="max_temp">{(Math.floor(days && days.max_temp))} ˚C</p> 
                                             } 
                                             {isConverted 
-                                                ? <p>{(Math.floor(days && days.min_temp) * 9/5 + 32)} ˚F</p> 
-                                                : <p>{(Math.floor(days && days.min_temp))} ˚C</p> 
+                                                ? <p className="min_temp">{(Math.floor(days && days.min_temp) * 9/5 + 32)} ˚F</p> 
+                                                : <p className="min_temp">{(Math.floor(days && days.min_temp))} ˚C</p> 
                                             }                         
                                         </div>
                                     </li>

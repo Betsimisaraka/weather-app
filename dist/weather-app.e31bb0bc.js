@@ -30028,7 +30028,15 @@ function DisplayWeather({
       alt: days && days.weather_state_name
     }), /*#__PURE__*/_react.default.createElement("div", {
       className: "weather_temp"
-    }, isConverted ? /*#__PURE__*/_react.default.createElement("p", null, Math.floor(days && days.max_temp) * 9 / 5 + 32, " \u02DAF") : /*#__PURE__*/_react.default.createElement("p", null, Math.floor(days && days.max_temp), " \u02DAC"), isConverted ? /*#__PURE__*/_react.default.createElement("p", null, Math.floor(days && days.min_temp) * 9 / 5 + 32, " \u02DAF") : /*#__PURE__*/_react.default.createElement("p", null, Math.floor(days && days.min_temp), " \u02DAC")));
+    }, isConverted ? /*#__PURE__*/_react.default.createElement("p", {
+      className: "max_temp"
+    }, Math.floor(days && days.max_temp) * 9 / 5 + 32, " \u02DAF") : /*#__PURE__*/_react.default.createElement("p", {
+      className: "max_temp"
+    }, Math.floor(days && days.max_temp), " \u02DAC"), isConverted ? /*#__PURE__*/_react.default.createElement("p", {
+      className: "min_temp"
+    }, Math.floor(days && days.min_temp) * 9 / 5 + 32, " \u02DAF") : /*#__PURE__*/_react.default.createElement("p", {
+      className: "min_temp"
+    }, Math.floor(days && days.min_temp), " \u02DAC")));
   })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_HightLights.default, null)))));
 }
 
@@ -30160,7 +30168,7 @@ function Sidbar({
     className: "btn_back",
     onClick: backToTheLocation,
     type: "button"
-  }, "O")), isLoading ? /*#__PURE__*/_react.default.createElement("p", {
+  })), isLoading ? /*#__PURE__*/_react.default.createElement("p", {
     className: "loading"
   }, "Loading...") : /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
     src: `https://www.metaweather.com//static/img/weather/png/${img}.png`,
@@ -30173,7 +30181,7 @@ function Sidbar({
     className: "weather_name"
   }, weatherToday && weatherToday.weather_state_name), /*#__PURE__*/_react.default.createElement("p", {
     className: "weather_date_today"
-  }, "Today: ", getMonth), /*#__PURE__*/_react.default.createElement("h1", null, woeid.title)));
+  }, "Today . ", getMonth), /*#__PURE__*/_react.default.createElement("h1", null, woeid.title)));
 }
 
 var _default = Sidbar;

@@ -29,3 +29,19 @@
     padding-top: 10px;
     padding-bottom: 31px;
 }
+
+.max_temp, .min_temp {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.max_temp {
+    color: #E7E7EB;
+}
+
+.min_temp {
+    color: #A09FB1;
+}
