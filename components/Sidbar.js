@@ -19,7 +19,7 @@ function Sidbar({ setOpenModal, backToTheLocation, openModal, isConverted }) {
                 {isLoading 
                 ? <p className="loading">Loading...</p>
                 : <div>
-                    <img src={`https://www.metaweather.com//static/img/weather/png/${img}.png`} alt="Heavy rain" />
+                    <img src={`https://www.metaweather.com//static/img/weather/png/${img}.png`} alt={weatherToday && weatherToday.weather_state_name} />
                     {isConverted 
                         ? <p className="weather_today_temp">{(Math.floor(weatherToday && weatherToday.the_temp) * 9/5 + 32)} <span>˚F</span></p> 
                         : <p className="weather_today_temp">{(Math.floor(weatherToday && weatherToday.the_temp))} <span>˚C</span></p> 

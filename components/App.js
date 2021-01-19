@@ -5,11 +5,14 @@ import SearchForm from "../components/SearchForm";
 import Sidbar from '../components/Sidbar';
 
 function App() {
-    const { location, setLocation, handleSubmit, openModal, setOpenModal, backToTheLocation,  isConverted, changeIntoF, changeIntoCelcuis } = useContext(Context);
+    const { name, setName, fetchCity, location, setLocation, handleSubmit, openModal, setOpenModal, backToTheLocation,  isConverted, changeIntoF, changeIntoCelcuis } = useContext(Context);
     
     return (
         <div>
             {openModal && <SearchForm
+                fetchCity={fetchCity}
+                setName={setName}
+                name={name}
                 setOpenModal={setOpenModal}
                 location={location}
                 setLocation={setLocation}

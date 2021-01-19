@@ -4,6 +4,7 @@ const Context = createContext();
 
 function ContextProvider({children}) {
     const [location, setLocation] = useState('london');
+    const [name, setName] = useState('london');
     const [openModal, setOpenModal] = useState(false);
     const [isConverted, setIsConverted ] = useState(false);
 
@@ -29,18 +30,35 @@ function ContextProvider({children}) {
                     woeid: action.filteredGithubJobs
                 }
             }
-            
+            case "FETCH_CITY": {
+                return {
+                    ...state,
+                    city: action.city
+                }
+            }
             default:
-                break;
+                return state;
         }
-        return state;
     }, {
         isLoading: true,
         weather: [],
         woeid: [],
+        city: [],
     })
 
-    async function fetchData() {
+    async function fetchCity() {
+        const URL_API = `https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?query=${name}`
+        const response = await fetch(URL_API);
+        const data = await response.json();
+        console.log(data);
+        dispatch({ type: "FETCH_CITY", city: data });
+    }
+
+    useEffect(() => {
+       fetchCity()
+    }, [])
+
+    async function fetchData(location) {
         const URL_API = `https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?query=${location}`
         const response = await fetch(URL_API);
         const result = await response.json();
@@ -54,16 +72,14 @@ function ContextProvider({children}) {
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            fetchData();
-        }, 1000);
-    }, [])
+        fetchData(location);
+    }, [location])
 
-    function handleSubmit(e) {
-        e.preventDefault();
+    function handleSubmit(param) {
+        console.log(param);
         fetchData();
         setOpenModal(false)
-        setLocation('london');
+        setLocation(param);
     }
 
     function backToTheLocation() {
@@ -80,7 +96,7 @@ function ContextProvider({children}) {
     }
 
     return (
-        <Context.Provider value={{ location, state, setLocation, handleSubmit, openModal, setOpenModal, backToTheLocation, isConverted, changeIntoF, changeIntoCelcuis }}>
+        <Context.Provider value={{ name, setName, fetchCity, location, state, setLocation, handleSubmit, openModal, setOpenModal, backToTheLocation, isConverted, changeIntoF, changeIntoCelcuis }}>
             {children}
         </Context.Provider>
     )

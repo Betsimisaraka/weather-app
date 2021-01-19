@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { Context } from '../Context';
 
-function SearchForm({ setOpenModal, location, setLocation, handleSubmit }) {
+function SearchForm({ setOpenModal, location, setLocation, handleSubmit, fetchCity, name, setName }) {
     const { state } = useContext(Context);
-    const { weather } = state;
-    console.log(weather);
+    const { city } = state;
+    console.log(city);
+    console.log(name);
 
     const [isShow, setIsShow] = useState(false);
 
@@ -16,6 +17,7 @@ function SearchForm({ setOpenModal, location, setLocation, handleSubmit }) {
         e.preventDefault();
         toggled();
         setLocation(location);
+        fetchCity();
     }
 
     function closeModal() {
@@ -29,16 +31,16 @@ function SearchForm({ setOpenModal, location, setLocation, handleSubmit }) {
                 <form onSubmit={handleToggle}>
                     <input 
                         type="text" 
-                        value={location}
+                        value={name}
                         name="searchCity"
-                        onChange={e => setLocation(e.target.value)}
+                        onChange={e => setName(e.target.value)}
                         placeholder="Search location" />
                     <button>Search</button>
                 </form>
-                {isShow && (<button className="btn_fetch" type="button" value={location} onClick={handleSubmit}>{location}</button>)}
-                {/* {isShow && (weather.length > 0 && weather.map(weath =>
-                    <button key={weath.title} className="btn_fetch" type="button" onClick={handleSubmit}>{weath.title}</button>))
-                } */}
+                {/* {isShow && (<button className="btn_fetch" type="button" value={location} onClick={handleSubmit}>{location}</button>)} */}
+                {isShow && (city.length > 0 && city.map(weath =>
+                    <button key={weath.title} className="btn_fetch" type="button" value={weath.title} onClick={() => handleSubmit(weath.title)}>{weath.title}</button>))
+                }
             </div>    
         </div>
     )

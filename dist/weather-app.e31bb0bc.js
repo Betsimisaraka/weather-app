@@ -29794,6 +29794,7 @@ function ContextProvider({
   children
 }) {
   const [location, setLocation] = (0, _react.useState)('london');
+  const [name, setName] = (0, _react.useState)('london');
   const [openModal, setOpenModal] = (0, _react.useState)(false);
   const [isConverted, setIsConverted] = (0, _react.useState)(false);
   const [state, dispatch] = (0, _react.useReducer)((state, action) => {
@@ -29821,18 +29822,39 @@ function ContextProvider({
           };
         }
 
-      default:
-        break;
-    }
+      case "FETCH_CITY":
+        {
+          return { ...state,
+            city: action.city
+          };
+        }
 
-    return state;
+      default:
+        return state;
+    }
   }, {
     isLoading: true,
     weather: [],
-    woeid: []
+    woeid: [],
+    city: []
   });
 
-  async function fetchData() {
+  async function fetchCity() {
+    const URL_API = `https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?query=${name}`;
+    const response = await fetch(URL_API);
+    const data = await response.json();
+    console.log(data);
+    dispatch({
+      type: "FETCH_CITY",
+      city: data
+    });
+  }
+
+  (0, _react.useEffect)(() => {
+    fetchCity();
+  }, []);
+
+  async function fetchData(location) {
     const URL_API = `https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?query=${location}`;
     const response = await fetch(URL_API);
     const result = await response.json();
@@ -29853,16 +29875,14 @@ function ContextProvider({
   }
 
   (0, _react.useEffect)(() => {
-    setTimeout(() => {
-      fetchData();
-    }, 1000);
-  }, []);
+    fetchData(location);
+  }, [location]);
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit(param) {
+    console.log(param);
     fetchData();
     setOpenModal(false);
-    setLocation('london');
+    setLocation(param);
   }
 
   function backToTheLocation() {
@@ -29880,6 +29900,9 @@ function ContextProvider({
 
   return /*#__PURE__*/_react.default.createElement(Context.Provider, {
     value: {
+      name,
+      setName,
+      fetchCity,
       location,
       state,
       setLocation,
@@ -30031,15 +30054,19 @@ function SearchForm({
   setOpenModal,
   location,
   setLocation,
-  handleSubmit
+  handleSubmit,
+  fetchCity,
+  name,
+  setName
 }) {
   const {
     state
   } = (0, _react.useContext)(_Context.Context);
   const {
-    weather
+    city
   } = state;
-  console.log(weather);
+  console.log(city);
+  console.log(name);
   const [isShow, setIsShow] = (0, _react.useState)(false);
 
   function toggled() {
@@ -30050,6 +30077,7 @@ function SearchForm({
     e.preventDefault();
     toggled();
     setLocation(location);
+    fetchCity();
   }
 
   function closeModal() {
@@ -30068,16 +30096,17 @@ function SearchForm({
     onSubmit: handleToggle
   }, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    value: location,
+    value: name,
     name: "searchCity",
-    onChange: e => setLocation(e.target.value),
+    onChange: e => setName(e.target.value),
     placeholder: "Search location"
-  }), /*#__PURE__*/_react.default.createElement("button", null, "Search")), isShow && /*#__PURE__*/_react.default.createElement("button", {
+  }), /*#__PURE__*/_react.default.createElement("button", null, "Search")), isShow && city.length > 0 && city.map(weath => /*#__PURE__*/_react.default.createElement("button", {
+    key: weath.title,
     className: "btn_fetch",
     type: "button",
-    value: location,
-    onClick: handleSubmit
-  }, location)));
+    value: weath.title,
+    onClick: () => handleSubmit(weath.title)
+  }, weath.title))));
 }
 
 var _default = SearchForm;
@@ -30135,7 +30164,7 @@ function Sidbar({
     className: "loading"
   }, "Loading...") : /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
     src: `https://www.metaweather.com//static/img/weather/png/${img}.png`,
-    alt: "Heavy rain"
+    alt: weatherToday && weatherToday.weather_state_name
   }), isConverted ? /*#__PURE__*/_react.default.createElement("p", {
     className: "weather_today_temp"
   }, Math.floor(weatherToday && weatherToday.the_temp) * 9 / 5 + 32, " ", /*#__PURE__*/_react.default.createElement("span", null, "\u02DAF")) : /*#__PURE__*/_react.default.createElement("p", {
@@ -30175,6 +30204,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function App() {
   const {
+    name,
+    setName,
+    fetchCity,
     location,
     setLocation,
     handleSubmit,
@@ -30186,6 +30218,9 @@ function App() {
     changeIntoCelcuis
   } = (0, _react.useContext)(_Context.Context);
   return /*#__PURE__*/_react.default.createElement("div", null, openModal && /*#__PURE__*/_react.default.createElement(_SearchForm.default, {
+    fetchCity: fetchCity,
+    setName: setName,
+    name: name,
     setOpenModal: setOpenModal,
     location: location,
     setLocation: setLocation,
@@ -30249,7 +30284,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50472" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55100" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
