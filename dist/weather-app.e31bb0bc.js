@@ -29980,13 +29980,12 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function DisplayWeather({
-  changeIntoCelcuis,
-  changeIntoF,
-  isConverted
-}) {
+function DisplayWeather() {
   const {
-    state
+    state,
+    changeIntoCelcuis,
+    changeIntoF,
+    isConverted
   } = (0, _react.useContext)(_Context.Context);
   const {
     woeid,
@@ -30058,23 +30057,20 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function SearchForm({
-  setOpenModal,
-  location,
-  setLocation,
-  handleSubmit,
-  fetchCity,
-  name,
-  setName
-}) {
+function SearchForm() {
   const {
-    state
+    state,
+    fetchCity,
+    setName,
+    name,
+    setOpenModal,
+    location,
+    setLocation,
+    handleSubmit
   } = (0, _react.useContext)(_Context.Context);
   const {
     city
   } = state;
-  console.log(city);
-  console.log(name);
   const [isShow, setIsShow] = (0, _react.useState)(false);
 
   function toggled() {
@@ -30214,35 +30210,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function App() {
   const {
-    name,
-    setName,
-    fetchCity,
-    location,
-    setLocation,
-    handleSubmit,
-    openModal,
-    setOpenModal,
-    backToTheLocation,
-    isConverted,
-    changeIntoF,
-    changeIntoCelcuis
+    openModal
   } = (0, _react.useContext)(_Context.Context);
-  return /*#__PURE__*/_react.default.createElement("div", null, openModal && /*#__PURE__*/_react.default.createElement(_SearchForm.default, {
-    fetchCity: fetchCity,
-    setName: setName,
-    name: name,
-    setOpenModal: setOpenModal,
-    location: location,
-    setLocation: setLocation,
-    handleSubmit: handleSubmit
-  }), /*#__PURE__*/_react.default.createElement(_Sidbar.default, null), /*#__PURE__*/_react.default.createElement(_DisplayWeather.default, {
-    setOpenModal: setOpenModal,
-    openModal: openModal,
-    backToTheLocation: backToTheLocation,
-    isConverted: isConverted,
-    changeIntoCelcuis: changeIntoCelcuis,
-    changeIntoF: changeIntoF
-  }));
+  return /*#__PURE__*/_react.default.createElement("div", null, openModal && /*#__PURE__*/_react.default.createElement(_SearchForm.default, null), /*#__PURE__*/_react.default.createElement(_Sidbar.default, null), /*#__PURE__*/_react.default.createElement(_DisplayWeather.default, null));
 }
 
 var _default = App;

@@ -1,12 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { Context } from '../Context';
 
-function SearchForm({ setOpenModal, location, setLocation, handleSubmit, fetchCity, name, setName }) {
-    const { state } = useContext(Context);
+function SearchForm() {
+    const { state, fetchCity, setName, name, setOpenModal, location, setLocation, handleSubmit } = useContext(Context);
     const { city } = state;
-    console.log(city);
-    console.log(name);
-
     const [isShow, setIsShow] = useState(false);
 
     function toggled() {

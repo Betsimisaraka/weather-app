@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { Context } from '../Context';
 import HightLights from '../components/HightLights';
 
-function DisplayWeather({ changeIntoCelcuis, changeIntoF, isConverted }) {
-    const { state } = useContext(Context);
+function DisplayWeather() {
+    const { state, changeIntoCelcuis, changeIntoF, isConverted } = useContext(Context);
     const { woeid, isLoading } = state; 
 
     const weatherTommorow = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[1];
