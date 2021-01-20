@@ -33,6 +33,7 @@ function SearchForm({ setOpenModal, location, setLocation, handleSubmit, fetchCi
                         type="text" 
                         value={name}
                         name="searchCity"
+                        className="location_input"
                         onChange={e => setName(e.target.value)}
                         placeholder="Search location" />
                     <button>Search</button>

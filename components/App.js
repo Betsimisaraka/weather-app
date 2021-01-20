@@ -18,12 +18,7 @@ function App() {
                 setLocation={setLocation}
                 handleSubmit={handleSubmit}
             />}
-            <Sidbar 
-                setOpenModal={setOpenModal}
-                openModal={openModal}
-                backToTheLocation={backToTheLocation}
-                isConverted={isConverted}
-            />
+            <Sidbar />
             <DisplayWeather
                 setOpenModal={setOpenModal}
                 openModal={openModal}

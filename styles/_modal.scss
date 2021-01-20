@@ -58,6 +58,10 @@
     padding-bottom: 15px;
     border: 1px solid #E7E7EB;
     box-sizing: border-box;
+    background-image: url('../assets/search.svg');
+    background-repeat: no-repeat;
+    background-size: 1.5rem;
+    background-position: 5% 60%;
 }
 
 .modal_inner form input[placeholder] {
@@ -67,6 +71,7 @@
     font-size: 16px;
     line-height: 19px;
     color: #616475;
+    padding-left: 40px;
 }
 
 .modal_inner form button {

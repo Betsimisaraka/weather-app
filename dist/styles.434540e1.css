@@ -138,16 +138,24 @@ h3 {
 }
 
 .weather_general {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background: #1E213A;
   width: 100%;
-  padding-bottom: 52px;
+  height: 100vh;
 }
 
 .weather_general img {
   width: 150px;
-  height: 200px;
-  margin-top: 100px;
+  height: 174px;
+}
+
+.weather_today_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .weather_today_temp {
@@ -157,7 +165,7 @@ h3 {
   font-size: 100px;
   line-height: 100px;
   margin: 0;
-  margin-top: 50px;
+  margin-top: 30px;
   padding: 0;
   color: #E7E7EB;
 }
@@ -170,8 +178,8 @@ h3 {
   line-height: 42px;
   text-align: center;
   color: #A09FB1;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .weather_date_today {
@@ -190,13 +198,13 @@ h1 {
   font-size: 18px;
   line-height: 21px;
   color: #88869D;
-  padding-top: 32px;
-  padding-bottom: 50px;
+  padding-top: 10px;
+  padding-bottom: 20px;
   background-image: url("/location.950d770a.svg");
   background-repeat: no-repeat;
   background-size: 1.5rem;
-  background-position: 40% 40%;
-  padding-left: 9px;
+  background-position: 0% 30%;
+  padding-left: 2rem;
 }
 
 .weather_today_temp span {
@@ -218,7 +226,6 @@ h1 {
     background: #1E213A;
     width: 300px;
     position: fixed;
-    overflow: auto;
     padding-bottom: 52px;
   }
 }
@@ -384,6 +391,10 @@ progress {
   padding-bottom: 15px;
   border: 1px solid #E7E7EB;
   box-sizing: border-box;
+  background-image: url("/search.f1252315.svg");
+  background-repeat: no-repeat;
+  background-size: 1.5rem;
+  background-position: 5% 60%;
 }
 
 .modal_inner form input[placeholder] {
@@ -393,6 +404,7 @@ progress {
   font-size: 16px;
   line-height: 19px;
   color: #616475;
+  padding-left: 40px;
 }
 
 .modal_inner form button {

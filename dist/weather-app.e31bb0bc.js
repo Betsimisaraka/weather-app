@@ -30106,6 +30106,7 @@ function SearchForm({
     type: "text",
     value: name,
     name: "searchCity",
+    className: "location_input",
     onChange: e => setName(e.target.value),
     placeholder: "Search location"
   }), /*#__PURE__*/_react.default.createElement("button", null, "Search")), isShow && city.length > 0 && city.map(weath => /*#__PURE__*/_react.default.createElement("button", {
@@ -30135,14 +30136,13 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function Sidbar({
-  setOpenModal,
-  backToTheLocation,
-  openModal,
-  isConverted
-}) {
+function Sidbar() {
   const {
-    state
+    state,
+    setOpenModal,
+    backToTheLocation,
+    openModal,
+    isConverted
   } = (0, _react.useContext)(_Context.Context);
   const {
     woeid,
@@ -30170,7 +30170,9 @@ function Sidbar({
     type: "button"
   })), isLoading ? /*#__PURE__*/_react.default.createElement("p", {
     className: "loading"
-  }, "Loading...") : /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+  }, "Loading...") : /*#__PURE__*/_react.default.createElement("div", {
+    className: "weather_today_container"
+  }, /*#__PURE__*/_react.default.createElement("img", {
     src: `https://www.metaweather.com//static/img/weather/png/${img}.png`,
     alt: weatherToday && weatherToday.weather_state_name
   }), isConverted ? /*#__PURE__*/_react.default.createElement("p", {
@@ -30233,12 +30235,7 @@ function App() {
     location: location,
     setLocation: setLocation,
     handleSubmit: handleSubmit
-  }), /*#__PURE__*/_react.default.createElement(_Sidbar.default, {
-    setOpenModal: setOpenModal,
-    openModal: openModal,
-    backToTheLocation: backToTheLocation,
-    isConverted: isConverted
-  }), /*#__PURE__*/_react.default.createElement(_DisplayWeather.default, {
+  }), /*#__PURE__*/_react.default.createElement(_Sidbar.default, null), /*#__PURE__*/_react.default.createElement(_DisplayWeather.default, {
     setOpenModal: setOpenModal,
     openModal: openModal,
     backToTheLocation: backToTheLocation,
@@ -30292,7 +30289,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55100" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58719" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

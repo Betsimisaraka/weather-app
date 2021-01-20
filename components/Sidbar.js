@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { Context } from '../Context';
 
-function Sidbar({ setOpenModal, backToTheLocation, openModal, isConverted }) {
-    const { state } = useContext(Context);
+function Sidbar() {
+    const { state, setOpenModal, backToTheLocation, openModal, isConverted } = useContext(Context);
     const { woeid, isLoading } = state;
 
     const weatherToday = !isLoading && woeid && woeid.consolidated_weather && woeid.consolidated_weather[0];
@@ -18,7 +18,7 @@ function Sidbar({ setOpenModal, backToTheLocation, openModal, isConverted }) {
             </div>
                 {isLoading 
                 ? <p className="loading">Loading...</p>
-                : <div>
+                : <div className="weather_today_container">
                     <img src={`https://www.metaweather.com//static/img/weather/png/${img}.png`} alt={weatherToday && weatherToday.weather_state_name} />
                     {isConverted 
                         ? <p className="weather_today_temp">{(Math.floor(weatherToday && weatherToday.the_temp) * 9/5 + 32)} <span>˚F</span></p> 
