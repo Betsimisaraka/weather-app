@@ -3,31 +3,47 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
     flex-wrap: wrap;
     padding-bottom: 50px;
 }
 
-.weather_fivedays li {
-    padding: 18px 22px;
+.weather_fivedays li:nth-child(1) {
+    flex-basis: 45%;
 }
 
-.weather_today {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    row-gap: 48px;
-    column-gap: 48px;
-    text-align: center;
+.weather_fivedays li:nth-child(2) {
+    flex-basis: 45%;
+}
+
+.weather_fivedays li:nth-child(3) {
+    flex-basis: 45%;
+    margin-top: 33px;
+}
+
+.weather_fivedays li:nth-child(4) {
+    flex-basis: 45%;
+    margin-top: 33px;
+}
+
+.weather_fivedays li:nth-child(5) {
+    flex-basis: 45%;
+    margin-top: 33px;
+}
+
+.weather_image {
+    padding-top: 10px;
+    padding-bottom: 31px;
+}
+
+.weather_fivedays li {
+    padding: 18px 5px;
 }
 
 .weather_temp {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
-
-.weather_fivedays li img {
-    padding-top: 10px;
-    padding-bottom: 31px;
 }
 
 .max_temp, .min_temp {
@@ -44,4 +60,10 @@
 
 .min_temp {
     color: #A09FB1;
+}
+
+@media (min-width: 1000px) {
+    .weather_fivedays li {
+        flex-basis: unset;
+    }
 }

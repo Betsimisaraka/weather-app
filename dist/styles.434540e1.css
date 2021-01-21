@@ -62,31 +62,47 @@ h3 {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  text-align: center;
   flex-wrap: wrap;
   padding-bottom: 50px;
 }
 
-.weather_fivedays li {
-  padding: 18px 22px;
+.weather_fivedays li:nth-child(1) {
+  flex-basis: 45%;
 }
 
-.weather_today {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  row-gap: 48px;
-  column-gap: 48px;
-  text-align: center;
+.weather_fivedays li:nth-child(2) {
+  flex-basis: 45%;
+}
+
+.weather_fivedays li:nth-child(3) {
+  flex-basis: 45%;
+  margin-top: 33px;
+}
+
+.weather_fivedays li:nth-child(4) {
+  flex-basis: 45%;
+  margin-top: 33px;
+}
+
+.weather_fivedays li:nth-child(5) {
+  flex-basis: 45%;
+  margin-top: 33px;
+}
+
+.weather_image {
+  padding-top: 10px;
+  padding-bottom: 31px;
+}
+
+.weather_fivedays li {
+  padding: 18px 5px;
 }
 
 .weather_temp {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-
-.weather_fivedays li img {
-  padding-top: 10px;
-  padding-bottom: 31px;
 }
 
 .max_temp, .min_temp {
@@ -105,12 +121,17 @@ h3 {
   color: #A09FB1;
 }
 
+@media (min-width: 1000px) {
+  .weather_fivedays li {
+    flex-basis: unset;
+  }
+}
 .search_buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-top: 42px;
+  padding-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
 }
@@ -144,6 +165,7 @@ h3 {
   background: #1E213A;
   width: 100%;
   height: 100vh;
+  padding-bottom: 100px;
 }
 
 .weather_general img {
@@ -178,8 +200,8 @@ h3 {
   line-height: 42px;
   text-align: center;
   color: #A09FB1;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 23px;
+  padding-bottom: 48px;
 }
 
 .weather_date_today {
@@ -198,12 +220,11 @@ h1 {
   font-size: 18px;
   line-height: 21px;
   color: #88869D;
-  padding-top: 10px;
-  padding-bottom: 20px;
+  padding-top: 33px;
   background-image: url("/location.950d770a.svg");
   background-repeat: no-repeat;
   background-size: 1.5rem;
-  background-position: 0% 30%;
+  background-position: 0% 100%;
   padding-left: 2rem;
 }
 
@@ -228,12 +249,27 @@ h1 {
     position: fixed;
     padding-bottom: 52px;
   }
+
+  .search_buttons {
+    padding-top: 42px;
+  }
+
+  .weather_name {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  h1 {
+    background-position: 0% 30%;
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
 }
 .weather {
   padding-top: 52px;
   padding-bottom: 51px;
-  padding-right: 40px;
-  padding-left: 40px;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 .buttons_C_F {
@@ -262,6 +298,14 @@ h1 {
     margin-bottom: 50px;
   }
 }
+.weather_today {
+  text-align: center;
+}
+
+.weather_today li + li {
+  margin-top: 32px;
+}
+
 .weather_today__heading {
   font-family: "Raleway";
   font-style: normal;
@@ -331,6 +375,84 @@ progress {
   color: #A09FB1;
 }
 
+/* Compass rotation */
+.compass-N {
+  transform: rotate(0deg);
+}
+
+.compass-NNE {
+  transform: rotate(22deg);
+}
+
+.compass-NE {
+  transform: rotate(45deg);
+}
+
+.compass-ENE {
+  transform: rotate(67deg);
+}
+
+.compass-E {
+  transform: rotate(90deg);
+}
+
+.compass-ESE {
+  transform: rotate(120deg);
+}
+
+.compass-SE {
+  transform: rotate(135deg);
+}
+
+.compass-SSE {
+  transform: rotate(157deg);
+}
+
+.compass-S {
+  transform: rotate(180deg);
+}
+
+.compass-SSW {
+  transform: rotate(202deg);
+}
+
+.compass-SW {
+  transform: rotate(225deg);
+}
+
+.compass-WSW {
+  transform: rotate(247deg);
+}
+
+.compass-W {
+  transform: rotate(270deg);
+}
+
+.compass-WNW {
+  transform: rotate(292deg);
+}
+
+.compass-NW {
+  transform: rotate(315deg);
+}
+
+.compass-NNW {
+  transform: rotate(337deg);
+}
+
+@media (min-width: 1000px) {
+  .weather_today {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 48px;
+    column-gap: 48px;
+    text-align: center;
+  }
+
+  .weather_today li + li {
+    margin-top: unset;
+  }
+}
 .modal_outer {
   width: 300px;
   position: fixed;

@@ -29916,7 +29916,9 @@ function ContextProvider({
     }
   }, children);
 }
-},{"react":"node_modules/react/index.js"}],"components/HightLights.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"assets/wind-direction.svg":[function(require,module,exports) {
+module.exports = "/wind-direction.883bb64b.svg";
+},{}],"components/HightLights.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29927,6 +29929,10 @@ exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
 
 var _Context = require("../Context");
+
+var _windDirection = _interopRequireDefault(require("../assets/wind-direction.svg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -29950,7 +29956,11 @@ function HightLights() {
   }, /*#__PURE__*/_react.default.createElement("button", {
     className: "wind_direction",
     type: "button"
-  }, "\u2196"), /*#__PURE__*/_react.default.createElement("p", null, weatherToday && weatherToday.wind_direction_compass))), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, "Humidity"), /*#__PURE__*/_react.default.createElement("h3", null, Math.floor(weatherToday && weatherToday.humidity), " ", /*#__PURE__*/_react.default.createElement("span", null, "%")), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _windDirection.default,
+    className: `compass-icon compass-${weatherToday && weatherToday.wind_direction_compass}`,
+    alt: ""
+  })), /*#__PURE__*/_react.default.createElement("p", null, weatherToday && weatherToday.wind_direction_compass))), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, "Humidity"), /*#__PURE__*/_react.default.createElement("h3", null, Math.floor(weatherToday && weatherToday.humidity), " ", /*#__PURE__*/_react.default.createElement("span", null, "%")), /*#__PURE__*/_react.default.createElement("div", {
     className: "percentage"
   }, /*#__PURE__*/_react.default.createElement("span", null, "0%"), /*#__PURE__*/_react.default.createElement("span", null, "50%"), /*#__PURE__*/_react.default.createElement("span", null, "100%")), /*#__PURE__*/_react.default.createElement("progress", {
     value: weatherToday && weatherToday.humidity,
@@ -29960,7 +29970,7 @@ function HightLights() {
 
 var _default = HightLights;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","../Context":"Context.js"}],"components/DisplayWeather.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../Context":"Context.js","../assets/wind-direction.svg":"assets/wind-direction.svg"}],"components/DisplayWeather.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30023,6 +30033,7 @@ function DisplayWeather() {
     return /*#__PURE__*/_react.default.createElement("li", {
       key: index
     }, /*#__PURE__*/_react.default.createElement("p", null, newDate), /*#__PURE__*/_react.default.createElement("img", {
+      className: "weather_image",
       src: `https://www.metaweather.com//static/img/weather/ico/${days && days.weather_state_abbr}.ico`,
       alt: days && days.weather_state_name
     }), /*#__PURE__*/_react.default.createElement("div", {
@@ -30259,7 +30270,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58719" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56804" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { Context } from '../Context';
+import Img from '../assets/wind-direction.svg';
 
 function HightLights() {
     const { state } = useContext(Context);
@@ -15,7 +16,15 @@ function HightLights() {
                     <p>Wind status</p>
                     <h3>{Math.floor(weatherToday && weatherToday.wind_speed)} <span>mph</span></h3>
                     <div className="wind">
-                        <button className="wind_direction" type="button">↖</button>
+                        <button className="wind_direction" type="button">
+                            <img
+                                src={Img}
+                                className={`compass-icon compass-${
+                                    weatherToday && weatherToday.wind_direction_compass
+                                }`}
+                                alt=""
+                            />
+                        </button>
                         <p>{weatherToday && weatherToday.wind_direction_compass}</p>
                     </div>
                 </li>
